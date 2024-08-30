@@ -15,9 +15,11 @@
             if(playAgain.ToLower() == "y"){
                 gameManager.board.ResetBoard();
                 gameManager.PlayGame();
+            }else if(playAgain.ToLower() == "n"){
+                keepPlaying = false;
             }
             else{
-                keepPlaying = false;
+                Console.WriteLine("Invalid input. Please enter Y to play again or N to exit.");
             }
         }   
 

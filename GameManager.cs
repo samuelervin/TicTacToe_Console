@@ -13,7 +13,7 @@ public class GameManager{
     }
 
 
-
+//Play the game
     public void PlayGame(){
         Player currentPlayer = player1;
 
@@ -28,23 +28,32 @@ public class GameManager{
                 Console.WriteLine("Invalid move. Try again.");
                 continue;
             }
-    
-            if(board.CheckForWin()){
-                board.PrintBoard();
-                Console.WriteLine(currentPlayer.GetName() + " wins!");
-                break;
-            }
-    
-            if(board.CheckForTie()){
-                board.PrintBoard();
+
+           //check if the board is full
+          
+             if(board.CheckForTie()){
                 Console.WriteLine("It's a tie!");
                 break;
             }
-    
-            currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            bool isTie = board.CheckForTie();
+            bool isWin = board.CheckForWin();
+            if(isTie && !isWin){
+                Console.WriteLine("It's a tie!");
+                break;
+            }else if(isWin){
+                Console.WriteLine(currentPlayer.GetName() + " wins!");
+                break;
+            }
+            //change players
+            if(currentPlayer == player1){
+                currentPlayer = player2;
+            }
+            else{
+                currentPlayer = player1;
+            }
         }
     }
-
+//Get the position from the user
     private int GetPosition(){
         int position = 0;
         bool validInput = false;
@@ -63,7 +72,7 @@ public class GameManager{
     
         return position;
     }
-    
+    //Print the game play instructions
     public  void PrintGamePlay(){
         Console.WriteLine("Welcome to Tic Tac Toe!");
         Console.WriteLine($"Player 1 is {player1.GetMarker()}");
