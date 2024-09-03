@@ -73,6 +73,45 @@ public class Board{
         return false;
     }
 
+//computer play being implemented
+    public int FindNextPosition(){
+         int position = RandomPosition();
+
+        //check for a winning move
+        for(int i = 1; i <= 9; i++){
+            if(board[i] == " "){
+                board[i] = "O";
+                if(CheckForWin()){
+                    board[i] = " ";
+                    position = i;
+                    break;
+                }
+                board[i] = " ";
+            }
+        }
+
+        //check for a blocking move
+        for(int i = 1; i <= 9; i++){
+            if(board[i] == " "){
+                board[i] = "X";
+                if(CheckForWin()){
+                    board[i] = " ";
+                    position = i;
+                    break;
+                }
+                board[i] = " ";
+            }
+        }
+       return position;
+    }
+
+    private int RandomPosition()
+    {
+        Random random = new Random();
+        int position = random.Next(1, 10);
+        return position;
+    }
+
     public bool CheckForTie(){
         for(int i = 1; i <= 9; i++){
             if(board[i] == " "){

@@ -5,7 +5,7 @@
 
 
 # Build docker image
-docker build -t tictactoe-image -f Dockerfile . 
+``` docker build -t tictactoe-image -f Dockerfile .  ```
 
-# Run the image
-docker run -it --rm tictactoe-image
+# Run the image and play the game. 
+``` docker run -it --rm tictactoe-image ``` 
